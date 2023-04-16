@@ -13,7 +13,6 @@ hide_table_row_index = """
                             </style>
                             """
 
-# Inject CSS with Markdown
 st.markdown(hide_table_row_index, unsafe_allow_html=True)
 
 option_entity = st.radio('Options:', ('chart', 'spreadsheet'), horizontal=False)
@@ -27,10 +26,12 @@ if option_entity == 'chart':
 
     selected_properity = st.selectbox("Whitch properity do you wanna see?:", 
                                   properities)
-    fig, ax = plt.subplots()
+    fig, ax = plt.subplots(facecolor='#0e1117')
 
-    ax.barh(df.Club,df[selected_properity], align='center')
-    ax.set_title(selected_properity)
+    ax.barh(df.Club,df[selected_properity], align='center',color='#800080')
+    ax.set_title(selected_properity,color='white')
+    ax.tick_params(axis='x',colors='white')
+    ax.tick_params(axis='y',colors='white')
     st.pyplot(fig)
 else:
     st.dataframe(df)
